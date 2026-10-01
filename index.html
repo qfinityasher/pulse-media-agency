@@ -1,337 +1,663 @@
-<!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulse Media Network | Micro-Sponsorship Agency</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            500: '#06b6d4',
-                            600: '#0891b2',
-                            900: '#164e63',
-                        },
-                        accent: '#3b82f6',
-                        darkbg: '#0a0a0c',
-                        cardbg: '#121216',
-                        bordercolor: '#22222a'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .glow-text {
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-        .glass-card {
-            background: linear-gradient(145deg, rgba(20, 20, 28, 0.8) 0%, rgba(12, 12, 16, 0.9) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
-        }
-        input[type=range] {
-            -webkit-appearance: none;
-            background: transparent;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 6px;
-            cursor: pointer;
-            background: #22222a;
-            border-radius: 3px;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            background: #3b82f6;
-            cursor: pointer;
-            -webkit-appearance: none;
-            margin-top: -7px;
-            box-shadow: 0 0 10px #3b82f6;
-        }
-    </style>
-</head>
-<body class="bg-[#0a0a0c] text-slate-200 font-sans antialiased selection:bg-accent selection:text-white">
+<html lang="en" class="scroll-smooth">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0c]/80 backdrop-blur-md border-b border-white/5">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pulse Media Network | Campaign Builder</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    colors: {
+
+                        brand: {
+
+                            dark: '#050B14',      /* Deep navy background */
+
+                            card: '#0B1320',      /* Slightly lighter for cards */
+
+                            border: '#1E293B',    /* Subtle borders */
+
+                            cyan: '#00D4FF',      /* Bright neon cyan */
+
+                            blue: '#0088FF'       /* Deep accent blue */
+
+                        }
+
+                    },
+
+                    fontFamily: {
+
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+    <style>
+
+        body {
+
+            background-color: #050B14;
+
+            color: #F8FAFC;
+
+        }
+
+       
+
+        .text-glow {
+
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.6), 0 0 10px rgba(0, 212, 255, 0.3);
+
+        }
+
+       
+
+        .box-glow {
+
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
+
+        }
+
+       
+
+        .border-glow {
+
+            border-color: #00D4FF;
+
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2) inset, 0 0 15px rgba(0, 212, 255, 0.2);
+
+        }
+
+
+
+        /* Custom Range Slider */
+
+        input[type=range] {
+
+            -webkit-appearance: none;
+
+            width: 100%;
+
+            background: transparent;
+
+        }
+
+       
+
+        input[type=range]:focus {
+
+            outline: none;
+
+        }
+
+       
+
+        input[type=range]::-webkit-slider-runnable-track {
+
+            width: 100%;
+
+            height: 6px;
+
+            cursor: pointer;
+
+            background: #1E293B;
+
+            border-radius: 4px;
+
+        }
+
+       
+
+        input[type=range]::-webkit-slider-thumb {
+
+            height: 24px;
+
+            width: 24px;
+
+            border-radius: 50%;
+
+            background: #00D4FF;
+
+            cursor: pointer;
+
+            -webkit-appearance: none;
+
+            margin-top: -9px;
+
+            box-shadow: 0 0 15px #00D4FF, 0 0 5px #FFFFFF inset;
+
+            border: 2px solid #050B14;
+
+        }
+
+
+
+        /* Smooth transitions */
+
+        .transition-all {
+
+            transition-property: all;
+
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+            transition-duration: 300ms;
+
+        }
+
+    </style>
+
+</head>
+
+<body class="antialiased font-sans selection:bg-brand-cyan selection:text-brand-dark">
+
+
+
+    <nav class="fixed top-0 w-full z-50 bg-[#050B14]/90 backdrop-blur-md border-b border-white/5">
+
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent to-cyan-400 flex items-center justify-center font-black text-white text-xl shadow-lg shadow-accent/20">P</div>
-                <span class="font-extrabold text-xl tracking-wider text-white">PULSE<span class="text-accent">MEDIA</span></span>
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-8 h-8 rounded bg-brand-cyan flex items-center justify-center text-brand-dark">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+
+                        <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" />
+
+                    </svg>
+
+                </div>
+
+                <span class="font-extrabold text-xl tracking-wide text-white">PULSE<span class="text-slate-400">MEDIA</span></span>
+
             </div>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-                <a href="#roster" class="hover:text-white transition-colors">Talent Roster</a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+
+                <a href="#approach" class="hover:text-white transition-colors">Our Approach</a>
+
                 <a href="#calculator" class="hover:text-white transition-colors">Campaign Calculator</a>
-                <a href="#contact" class="bg-accent hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-accent/20 font-semibold">Build Campaign</a>
+
+                <a href="#contact" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white px-5 py-2.5 rounded transition-all font-semibold">Build Campaign</a>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-36 pb-20 px-6 max-w-7xl mx-auto text-center relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 blur-[120px] rounded-full pointer-events-none"></div>
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 text-accent text-xs font-semibold uppercase tracking-widest mb-6">
-            <i data-lucide="zap" class="w-3.5 h-3.5"></i> Micro-Sponsorships Delivered at Scale
-        </span>
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-            Scale Your Brand Reach With <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-cyan-400 to-blue-500">Precision Targeting.</span>
+
+
+    <section class="pt-40 pb-24 px-6 max-w-5xl mx-auto text-center flex flex-col items-center">
+
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/5 text-brand-cyan text-[11px] font-bold tracking-widest uppercase mb-8">
+
+            <span class="w-2 h-2 rounded-full bg-brand-cyan box-glow"></span>
+
+            Micro-Sponsorships Delivered at Scale
+
+        </div>
+
+       
+
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+
+            Scale Your Brand Reach<br>With<br>
+
+            <span class="text-brand-cyan text-glow inline-block mt-2">Precision Targeting.</span>
+
         </h1>
+
+       
+
         <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            We bridge the gap between innovative brands and elite micro-creators. You buy guaranteed target views, and we deploy and manage the creator network needed to hit your goals.
+
+            We bridge the gap between innovative brands and elite micro-creators. You buy the guaranteed views, we handle the massive network of creators required to hit your targets.
+
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#calculator" class="w-full sm:w-auto bg-accent hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-xl shadow-accent/25 flex items-center justify-center gap-2">
-                Calculate Campaign Cost <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
-        </div>
+
+       
+
+        <a href="#calculator" class="bg-[#0099FF] hover:bg-brand-cyan text-white font-bold px-8 py-4 rounded-lg transition-all box-glow inline-block">
+
+            Calculate Campaign Cost
+
+        </a>
+
     </section>
 
-    <!-- Creator Roster -->
-    <section id="roster" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-accent text-xs font-semibold tracking-widest uppercase">Exclusive Roster</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Curated Network Talent</h2>
-            <p class="text-slate-400 mt-4">We carefully select and manage our creators. You buy the campaign objective, and our proprietary matching system deploys the perfect combination of creators to hit your targets.</p>
+
+
+    <section id="approach" class="py-20 px-6 max-w-7xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Card 1 -->
+
+            <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center hover:border-brand-cyan/30 transition-all group">
+
+                <h3 class="text-xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">Niche Sourcing Engine</h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed">We continually scout and vet hyper-niche creators with cult followings who perfectly align with your brand demographics.</p>
+
+            </div>
+
+           
+
+            <!-- Card 2 -->
+
+            <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center hover:border-brand-cyan/30 transition-all group">
+
+                <h3 class="text-xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">Aggregated Fulfillment</h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed">You sign one contract. We deploy your campaign across our curated roster of micro-creators until your target view count is hit.</p>
+
+            </div>
+
+           
+
+            <!-- Card 3 -->
+
+            <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center hover:border-brand-cyan/30 transition-all group">
+
+                <h3 class="text-xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">Unified Reporting</h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed">Stop tracking down 20 different YouTube links. We provide a single, unified dashboard of your aggregated campaign metrics and ROI.</p>
+
+            </div>
+
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Talent 1 -->
-            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
-                <span class="absolute top-4 right-4 bg-accent/20 text-accent text-xs font-bold px-2 py-1 rounded">Example Talent</span>
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-500 flex items-center justify-center text-white font-bold text-2xl">TR</div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white">Tech Reviewer</h3>
-                        <p class="text-slate-400 text-sm">Hardware & Peripherals</p>
-                    </div>
-                </div>
-                <div class="space-y-3 text-sm">
-                    <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Platform Reach:</span>
-                        <span class="text-white font-semibold">45,000+</span>
-                    </div>
-                    <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Avg. Engagement:</span>
-                        <span class="text-emerald-400 font-semibold">8.2%</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Audience:</span>
-                        <span class="text-white font-semibold">US / UK Tech</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Talent 2 -->
-            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
-                <span class="absolute top-4 right-4 bg-accent/20 text-accent text-xs font-bold px-2 py-1 rounded">Example Talent</span>
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-purple-500 to-accent flex items-center justify-center text-white font-bold text-2xl">CS</div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white">Coding Streamer</h3>
-                        <p class="text-slate-400 text-sm">Software & SaaS Tools</p>
-                    </div>
-                </div>
-                <div class="space-y-3 text-sm">
-                    <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Platform Reach:</span>
-                        <span class="text-white font-semibold">28,000+</span>
-                    </div>
-                    <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Avg. Engagement:</span>
-                        <span class="text-emerald-400 font-semibold">11.4%</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Audience:</span>
-                        <span class="text-white font-semibold">Developers</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Talent 3 -->
-            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
-                <span class="absolute top-4 right-4 bg-accent/20 text-accent text-xs font-bold px-2 py-1 rounded">Example Talent</span>
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-orange-500 to-pink-500 flex items-center justify-center text-white font-bold text-2xl">SG</div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white">Setup Guide</h3>
-                        <p class="text-slate-400 text-sm">Aesthetics & Productivity</p>
-                    </div>
-                </div>
-                <div class="space-y-3 text-sm">
-                    <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Platform Reach:</span>
-                        <span class="text-white font-semibold">65,000+</span>
-                    </div>
-                    <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Avg. Engagement:</span>
-                        <span class="text-emerald-400 font-semibold">6.5%</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Audience:</span>
-                        <span class="text-white font-semibold">WFH Pros</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <!-- Rate Card Calculator -->
-    <section id="calculator" class="py-20 px-6 max-w-5xl mx-auto">
-        <div class="glass-card p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-accent text-xs font-semibold tracking-widest uppercase">Instant Estimator</span>
-                <h2 class="text-3xl font-bold text-white mt-2">Interactive Campaign Rate Card</h2>
-                <p class="text-slate-400 text-sm mt-2">Adjust your campaign reach and select your deliverables to generate a transparent price quote.</p>
+
+
+    <section id="calculator" class="py-24 px-6 bg-[#03070E] border-t border-brand-border/50">
+
+        <div class="max-w-6xl mx-auto">
+
+            <div class="mb-12">
+
+                <span class="text-brand-cyan text-xs font-bold tracking-[0.2em] uppercase">Transparent Cost Predictability</span>
+
+                <h2 class="text-4xl font-extrabold text-white mt-3 mb-4">Campaign Builder Engine</h2>
+
+                <p class="text-slate-400 max-w-2xl">Configure your campaign parameters. Our pricing is straightforward: pay for target views and flat-rate deliverables, and we handle the entire creator roster.</p>
+
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-7 space-y-6">
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <label class="text-sm font-semibold text-slate-300">Target Campaign Views</label>
-                            <span id="views-display" class="text-accent font-bold text-lg">100,000 Views</span>
+
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                <!-- Left Panel: Inputs -->
+
+                <div class="lg:col-span-8 bg-brand-card border border-brand-border rounded-2xl p-8">
+
+                   
+
+                    <!-- Format Selection -->
+
+                    <div class="mb-12">
+
+                        <div class="flex items-center gap-3 mb-6">
+
+                            <span class="w-6 h-6 rounded bg-brand-dark border border-brand-border flex items-center justify-center text-xs font-bold text-brand-cyan">1</span>
+
+                            <h3 class="text-lg font-bold text-white">Deliverable Format</h3>
+
                         </div>
-                        <input type="range" id="views-slider" min="50000" max="1000000" step="50000" value="100000" class="w-full">
-                        <div class="flex justify-between text-xs text-slate-500 mt-1">
-                            <span>50k Views</span>
-                            <span>500k Views</span>
-                            <span>1M Views</span>
+
+                       
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="format-options">
+
+                            <!-- Option A -->
+
+                            <div onclick="selectFormat('Short-Form')" id="opt-Short-Form" class="cursor-pointer border border-brand-cyan bg-brand-cyan/5 rounded-lg p-5 transition-all">
+
+                                <h4 class="font-bold text-white mb-2">Short-Form</h4>
+
+                                <p class="text-xs text-slate-400 leading-relaxed">TikTok, Reels, YT Shorts (under 60s). High virality.</p>
+
+                            </div>
+
+                            <!-- Option B -->
+
+                            <div onclick="selectFormat('Integration')" id="opt-Integration" class="cursor-pointer border border-brand-border hover:border-slate-600 rounded-lg p-5 transition-all">
+
+                                <h4 class="font-bold text-white mb-2">Integration</h4>
+
+                                <p class="text-xs text-slate-400 leading-relaxed">60-90s shoutout inside regular YouTube content.</p>
+
+                            </div>
+
+                            <!-- Option C -->
+
+                            <div onclick="selectFormat('Dedicated')" id="opt-Dedicated" class="cursor-pointer border border-brand-border hover:border-slate-600 rounded-lg p-5 transition-all">
+
+                                <h4 class="font-bold text-white mb-2">Dedicated</h4>
+
+                                <p class="text-xs text-slate-400 leading-relaxed">Full 8-10 min videos entirely about your product.</p>
+
+                            </div>
+
                         </div>
+
                     </div>
 
+
+
+                    <!-- Slider Section -->
+
                     <div>
-                        <label class="text-sm font-semibold text-slate-300 block mb-3">Primary Video Format</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button type="button" onclick="setFormat('integrated')" id="btn-integrated" class="p-4 rounded-xl border border-accent bg-accent/10 text-white font-medium text-left flex flex-col justify-between transition-all">
-                                <span class="font-bold text-sm">Integrated Spot</span>
-                                <span class="text-xs text-slate-400 mt-1">60-90s mid-roll shoutout</span>
-                            </button>
-                            <button type="button" onclick="setFormat('dedicated')" id="btn-dedicated" class="p-4 rounded-xl border border-white/10 bg-white/5 text-slate-400 font-medium text-left flex flex-col justify-between transition-all hover:border-white/20">
-                                <span class="font-bold text-sm">Dedicated Review</span>
-                                <span class="text-xs text-slate-400 mt-1">Full feature video</span>
-                            </button>
+
+                        <div class="flex items-center justify-between mb-8">
+
+                            <div class="flex items-center gap-3">
+
+                                <span class="w-6 h-6 rounded bg-brand-dark border border-brand-border flex items-center justify-center text-xs font-bold text-brand-cyan">2</span>
+
+                                <h3 class="text-lg font-bold text-white">Estimated Total Campaign Views</h3>
+
+                            </div>
+
+                            <div class="border border-brand-cyan/50 bg-brand-cyan/10 text-brand-cyan font-mono font-bold px-4 py-1.5 rounded box-glow">
+
+                                <span id="display-views-badge">520,000</span>
+
+                            </div>
+
                         </div>
+
+                       
+
+                        <div class="relative pt-2 pb-6">
+
+                            <input type="range" id="view-slider" min="50000" max="2000000" step="10000" value="520000" oninput="updateCalculator()">
+
+                            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-4 font-bold uppercase tracking-wider">
+
+                                <span>50k</span>
+
+                                <span>Target Aggregated Scale</span>
+
+                                <span>2M</span>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="pt-2">
-                        <label class="text-sm font-semibold text-slate-300 block mb-3">Campaign Upgrades</label>
-                        <div class="space-y-3">
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 cursor-pointer hover:border-white/10 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" id="chk-link" onchange="calculateCost()" class="w-4 h-4 rounded text-accent bg-slate-800 border-white/10">
-                                    <div>
-                                        <div class="text-sm font-medium text-white">Link in Bio / Pinned Comment</div>
-                                        <div class="text-xs text-slate-400">Guaranteed tracking link placement</div>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-semibold text-slate-300">+$50 flat</span>
-                            </label>
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 cursor-pointer hover:border-white/10 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" id="chk-usage" onchange="calculateCost()" class="w-4 h-4 rounded text-accent bg-slate-800 border-white/10">
-                                    <div>
-                                        <div class="text-sm font-medium text-white">3-Month Paid Usage Rights</div>
-                                        <div class="text-xs text-slate-400">Run creator videos as paid ads</div>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-semibold text-slate-300">+$150 flat</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="lg:col-span-5 bg-black/40 p-6 rounded-2xl border border-white/5 text-center flex flex-col justify-between h-full">
-                    <div>
-                        <span class="text-xs uppercase font-semibold text-slate-500 tracking-wider">Estimated Total Campaign Budget</span>
-                        <div id="total-price" class="text-4xl font-extrabold text-white mt-2 mb-1">$1,000</div>
-                        <span class="text-xs text-emerald-400 font-medium">Guaranteed Reach & Delivery</span>
-                        <div class="my-6 border-t border-white/5 pt-6 text-left space-y-2">
-                            <div class="flex justify-between text-xs text-slate-400">
-                                <span>Roster Management & Outreach</span>
-                                <span class="text-slate-200">Included</span>
-                            </div>
-                            <div class="flex justify-between text-xs text-slate-400">
-                                <span>Quality Control & Review</span>
-                                <span class="text-slate-200">Included</span>
-                            </div>
-                            <div class="flex justify-between text-xs text-slate-400">
-                                <span>Targeting Strategy</span>
-                                <span class="text-slate-200">Micro-Creators</span>
-                            </div>
-                        </div>
+
+
+                <!-- Right Panel: Output Sidebar -->
+
+                <div class="lg:col-span-4 bg-brand-dark border border-brand-border rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden">
+
+                    <div class="absolute top-0 right-0 p-8 flex gap-1">
+
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan box-glow"></span>
+
                     </div>
-                    <a href="#contact" class="w-full bg-accent hover:bg-blue-600 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-accent/20 block text-sm">
-                        Book This Campaign
-                    </a>
+
+                   
+
+                    <div>
+
+                        <h3 class="text-xs font-mono tracking-widest text-slate-400 uppercase mb-8">Est. Proposal</h3>
+
+                       
+
+                        <div class="space-y-6">
+
+                            <div class="flex justify-between items-center border-b border-brand-border pb-4">
+
+                                <span class="text-sm text-slate-400 font-mono">Format</span>
+
+                                <span class="text-sm text-white font-bold" id="out-format">Short-Form</span>
+
+                            </div>
+
+                           
+
+                            <div class="flex justify-between items-center border-b border-brand-border pb-4">
+
+                                <span class="text-sm text-slate-400 font-mono">Target Views</span>
+
+                                <span class="text-sm text-white font-bold" id="out-views">520,000</span>
+
+                            </div>
+
+                           
+
+                            <div class="flex justify-between items-center border-b border-brand-border pb-4">
+
+                                <span class="text-sm text-slate-400 font-mono">Add-on Fees</span>
+
+                                <span class="text-sm text-white font-bold" id="out-addons">$150</span>
+
+                            </div>
+
+
+
+                            <div class="flex justify-between items-center pt-2">
+
+                                <span class="text-sm text-slate-400 font-mono">Fulfilled By:</span>
+
+                                <span class="text-sm text-brand-cyan font-bold font-mono">Curated Micro-Creator Roster</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Footer / Contact -->
-    <footer id="contact" class="py-16 px-6 border-t border-white/5 text-center">
-        <div class="max-w-xl mx-auto">
-            <h3 class="text-2xl font-bold text-white mb-2">Ready to Launch Your Campaign?</h3>
-            <p class="text-slate-400 text-sm mb-6">Contact our strategy team to discuss your target audience and custom deliverables.</p>
-            <a href="mailto:contact@pulsemedianetwork.com" class="inline-flex items-center gap-2 text-accent font-semibold hover:underline">
-                <i data-lucide="mail" class="w-4 h-4"></i> contact@pulsemedianetwork.com
-            </a>
-            <p class="text-xs text-slate-600 mt-12">© 2026 Pulse Media Network. All rights reserved.</p>
-        </div>
-    </footer>
+
+
+    <section id="contact" class="py-24 px-6 max-w-3xl mx-auto flex flex-col items-center">
+
+        <h2 class="text-4xl font-extrabold text-white mb-4 text-center">Launch Your Campaign</h2>
+
+        <p class="text-slate-400 text-center mb-12 max-w-lg">Submit your details and locked quote. Our account team will prepare your roster and be in touch within 12 hours.</p>
+
+
+
+        <form class="w-full bg-brand-card border border-brand-cyan/20 rounded-2xl p-8 md:p-10 shadow-[0_0_40px_rgba(0,212,255,0.05)]">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+                <div>
+
+                    <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">First Name</label>
+
+                    <input type="text" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
+
+                </div>
+
+                <div>
+
+                    <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">Company Name</label>
+
+                    <input type="text" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
+
+                </div>
+
+            </div>
+
+           
+
+            <div class="mb-6">
+
+                <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">Work Email</label>
+
+                <input type="email" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
+
+            </div>
+
+           
+
+            <div class="mb-8">
+
+                <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">Campaign Notes & Attached Quote</label>
+
+                <textarea rows="4" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm placeholder:text-slate-600" placeholder="Tell us about your product or attach quote data ..."></textarea>
+
+            </div>
+
+           
+
+            <button type="submit" class="w-full bg-[#0099FF] hover:bg-brand-cyan text-white font-bold py-4 rounded transition-all box-glow">
+
+                Initialize Deployment
+
+            </button>
+
+        </form>
+
+    </section>
+
+
 
     <script>
-        lucide.createIcons();
 
-        let currentFormat = 'integrated';
+        // State variables
 
-        function setFormat(format) {
+        let currentFormat = 'Short-Form';
+
+        const slider = document.getElementById('view-slider');
+
+
+
+        // Helper to format numbers with commas
+
+        function formatNumber(num) {
+
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        }
+
+
+
+        // Handle clicking the format boxes
+
+        function selectFormat(format) {
+
             currentFormat = format;
-            const btnInt = document.getElementById('btn-integrated');
-            const btnDed = document.getElementById('btn-dedicated');
 
-            if (format === 'integrated') {
-                btnInt.className = 'p-4 rounded-xl border border-accent bg-accent/10 text-white font-medium text-left flex flex-col justify-between transition-all';
-                btnDed.className = 'p-4 rounded-xl border border-white/10 bg-white/5 text-slate-400 font-medium text-left flex flex-col justify-between transition-all hover:border-white/20';
-            } else {
-                btnDed.className = 'p-4 rounded-xl border border-accent bg-accent/10 text-white font-medium text-left flex flex-col justify-between transition-all';
-                btnInt.className = 'p-4 rounded-xl border border-white/10 bg-white/5 text-slate-400 font-medium text-left flex flex-col justify-between transition-all hover:border-white/20';
-            }
-            calculateCost();
+           
+
+            // Reset all boxes to default style
+
+            const options = ['Short-Form', 'Integration', 'Dedicated'];
+
+            options.forEach(opt => {
+
+                const el = document.getElementById('opt-' + opt);
+
+                el.className = 'cursor-pointer border border-brand-border hover:border-slate-600 rounded-lg p-5 transition-all';
+
+            });
+
+           
+
+            // Highlight selected box
+
+            const selectedEl = document.getElementById('opt-' + format);
+
+            selectedEl.className = 'cursor-pointer border border-brand-cyan bg-brand-cyan/5 rounded-lg p-5 transition-all';
+
+           
+
+            // Trigger UI update
+
+            updateCalculator();
+
         }
 
-        function calculateCost() {
-            const views = parseInt(document.getElementById('views-slider').value);
-            document.getElementById('views-display').innerText = views.toLocaleString() + ' Views';
 
-            let baseCpm = currentFormat === 'integrated' ? 10 : 25; 
-            let cost = (views / 1000) * baseCpm;
 
-            if (document.getElementById('chk-link').checked) {
-                cost += 50;
-            }
-            if (document.getElementById('chk-usage').checked) {
-                cost += 150;
-            }
+        // Handle slider movement and UI updates
 
-            document.getElementById('total-price').innerText = '$' + cost.toLocaleString();
+        function updateCalculator() {
+
+            const views = parseInt(slider.value);
+
+            const formattedViews = formatNumber(views);
+
+           
+
+            // Update slider filled track appearance
+
+            const percentage = ((views - slider.min) / (slider.max - slider.min)) * 100;
+
+            slider.style.background = `linear-gradient(to right, #00D4FF ${percentage}%, #1E293B ${percentage}%)`;
+
+           
+
+            // Update UI elements
+
+            document.getElementById('display-views-badge').innerText = formattedViews;
+
+            document.getElementById('out-views').innerText = formattedViews;
+
+            document.getElementById('out-format').innerText = currentFormat;
+
+           
+
+            // Simulated add-on logic (changes slightly based on format just to make it interactive)
+
+            let addons = 150;
+
+            if (currentFormat === 'Integration') addons = 250;
+
+            if (currentFormat === 'Dedicated') addons = 500;
+
+            document.getElementById('out-addons').innerText = '$' + addons;
+
         }
 
-        document.getElementById('views-slider').addEventListener('input', calculateCost);
-        calculateCost();
+
+
+        // Initialize calculator on page load
+
+        updateCalculator();
+
     </script>
+
 </body>
-</html>
+
+</html> 
