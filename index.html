@@ -1,663 +1,337 @@
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Pulse Media Network | Campaign Builder</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
-
         tailwind.config = {
-
             theme: {
-
                 extend: {
-
                     colors: {
-
                         brand: {
-
                             dark: '#050B14',      /* Deep navy background */
-
                             card: '#0B1320',      /* Slightly lighter for cards */
-
                             border: '#1E293B',    /* Subtle borders */
-
                             cyan: '#00D4FF',      /* Bright neon cyan */
-
                             blue: '#0088FF'       /* Deep accent blue */
-
                         }
-
                     },
-
                     fontFamily: {
-
                         sans: ['Inter', 'system-ui', 'sans-serif'],
-
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-
                     }
-
                 }
-
             }
-
         }
-
     </script>
-
     <style>
-
         body {
-
             background-color: #050B14;
-
             color: #F8FAFC;
-
         }
-
-       
-
+        
         .text-glow {
-
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.6), 0 0 10px rgba(0, 212, 255, 0.3);
-
+            text-shadow: 0 0 35px rgba(0, 212, 255, 0.7), 0 0 15px rgba(0, 212, 255, 0.4);
         }
-
-       
-
+        
         .box-glow {
-
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
-
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
         }
-
-       
-
-        .border-glow {
-
-            border-color: #00D4FF;
-
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2) inset, 0 0 15px rgba(0, 212, 255, 0.2);
-
+        
+        .form-glow {
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
         }
-
-
 
         /* Custom Range Slider */
-
         input[type=range] {
-
             -webkit-appearance: none;
-
             width: 100%;
-
             background: transparent;
-
         }
-
-       
-
+        
         input[type=range]:focus {
-
             outline: none;
-
         }
-
-       
-
+        
         input[type=range]::-webkit-slider-runnable-track {
-
             width: 100%;
-
             height: 6px;
-
             cursor: pointer;
-
             background: #1E293B;
-
             border-radius: 4px;
-
         }
-
-       
-
+        
         input[type=range]::-webkit-slider-thumb {
-
             height: 24px;
-
             width: 24px;
-
             border-radius: 50%;
-
             background: #00D4FF;
-
             cursor: pointer;
-
             -webkit-appearance: none;
-
             margin-top: -9px;
-
             box-shadow: 0 0 15px #00D4FF, 0 0 5px #FFFFFF inset;
-
             border: 2px solid #050B14;
-
         }
-
-
-
-        /* Smooth transitions */
 
         .transition-all {
-
             transition-property: all;
-
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
             transition-duration: 300ms;
-
         }
-
     </style>
-
 </head>
-
 <body class="antialiased font-sans selection:bg-brand-cyan selection:text-brand-dark">
 
-
-
     <nav class="fixed top-0 w-full z-50 bg-[#050B14]/90 backdrop-blur-md border-b border-white/5">
-
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-
             <div class="flex items-center gap-3">
-
                 <div class="w-8 h-8 rounded bg-brand-cyan flex items-center justify-center text-brand-dark">
-
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-
                         <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" />
-
                     </svg>
-
                 </div>
-
                 <span class="font-extrabold text-xl tracking-wide text-white">PULSE<span class="text-slate-400">MEDIA</span></span>
-
             </div>
-
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-
                 <a href="#approach" class="hover:text-white transition-colors">Our Approach</a>
-
                 <a href="#calculator" class="hover:text-white transition-colors">Campaign Calculator</a>
-
-                <a href="#contact" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white px-5 py-2.5 rounded transition-all font-semibold">Build Campaign</a>
-
+                <a href="#contact" class="bg-[#1E293B] hover:bg-slate-700 border border-slate-700 text-white px-5 py-2.5 rounded transition-all font-semibold">Build Campaign</a>
             </div>
-
         </div>
-
     </nav>
 
-
-
     <section class="pt-40 pb-24 px-6 max-w-5xl mx-auto text-center flex flex-col items-center">
-
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/5 text-brand-cyan text-[11px] font-bold tracking-widest uppercase mb-8">
-
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/40 bg-brand-cyan/5 text-brand-cyan text-[11px] font-bold tracking-widest uppercase mb-8">
             <span class="w-2 h-2 rounded-full bg-brand-cyan box-glow"></span>
-
             Micro-Sponsorships Delivered at Scale
-
         </div>
-
-       
-
+        
         <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-
             Scale Your Brand Reach<br>With<br>
-
             <span class="text-brand-cyan text-glow inline-block mt-2">Precision Targeting.</span>
-
         </h1>
-
-       
-
+        
         <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-
             We bridge the gap between innovative brands and elite micro-creators. You buy the guaranteed views, we handle the massive network of creators required to hit your targets.
-
         </p>
-
-       
-
+        
         <a href="#calculator" class="bg-[#0099FF] hover:bg-brand-cyan text-white font-bold px-8 py-4 rounded-lg transition-all box-glow inline-block">
-
             Calculate Campaign Cost
-
         </a>
-
     </section>
-
-
 
     <section id="approach" class="py-20 px-6 max-w-7xl mx-auto">
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
             <!-- Card 1 -->
-
             <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center hover:border-brand-cyan/30 transition-all group">
-
+                <div class="w-16 h-16 rounded-full bg-[#03070E] border border-brand-border mx-auto mb-6 flex items-center justify-center"></div>
                 <h3 class="text-xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">Niche Sourcing Engine</h3>
-
                 <p class="text-slate-400 text-sm leading-relaxed">We continually scout and vet hyper-niche creators with cult followings who perfectly align with your brand demographics.</p>
-
             </div>
-
-           
-
+            
             <!-- Card 2 -->
-
             <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center hover:border-brand-cyan/30 transition-all group">
-
+                <div class="w-16 h-16 rounded-full bg-[#03070E] border border-brand-border mx-auto mb-6 flex items-center justify-center"></div>
                 <h3 class="text-xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">Aggregated Fulfillment</h3>
-
                 <p class="text-slate-400 text-sm leading-relaxed">You sign one contract. We deploy your campaign across our curated roster of micro-creators until your target view count is hit.</p>
-
             </div>
-
-           
-
+            
             <!-- Card 3 -->
-
             <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center hover:border-brand-cyan/30 transition-all group">
-
+                <div class="w-16 h-16 rounded-full bg-[#03070E] border border-brand-border mx-auto mb-6 flex items-center justify-center"></div>
                 <h3 class="text-xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">Unified Reporting</h3>
-
                 <p class="text-slate-400 text-sm leading-relaxed">Stop tracking down 20 different YouTube links. We provide a single, unified dashboard of your aggregated campaign metrics and ROI.</p>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <section id="calculator" class="py-24 px-6 bg-[#03070E] border-t border-brand-border/50">
-
         <div class="max-w-6xl mx-auto">
-
             <div class="mb-12">
-
                 <span class="text-brand-cyan text-xs font-bold tracking-[0.2em] uppercase">Transparent Cost Predictability</span>
-
                 <h2 class="text-4xl font-extrabold text-white mt-3 mb-4">Campaign Builder Engine</h2>
-
                 <p class="text-slate-400 max-w-2xl">Configure your campaign parameters. Our pricing is straightforward: pay for target views and flat-rate deliverables, and we handle the entire creator roster.</p>
-
             </div>
-
-
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-
                 <!-- Left Panel: Inputs -->
-
                 <div class="lg:col-span-8 bg-brand-card border border-brand-border rounded-2xl p-8">
-
-                   
-
+                    
                     <!-- Format Selection -->
-
                     <div class="mb-12">
-
                         <div class="flex items-center gap-3 mb-6">
-
                             <span class="w-6 h-6 rounded bg-brand-dark border border-brand-border flex items-center justify-center text-xs font-bold text-brand-cyan">1</span>
-
                             <h3 class="text-lg font-bold text-white">Deliverable Format</h3>
-
                         </div>
-
-                       
-
+                        
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="format-options">
-
                             <!-- Option A -->
-
                             <div onclick="selectFormat('Short-Form')" id="opt-Short-Form" class="cursor-pointer border border-brand-cyan bg-brand-cyan/5 rounded-lg p-5 transition-all">
-
                                 <h4 class="font-bold text-white mb-2">Short-Form</h4>
-
                                 <p class="text-xs text-slate-400 leading-relaxed">TikTok, Reels, YT Shorts (under 60s). High virality.</p>
-
                             </div>
-
                             <!-- Option B -->
-
                             <div onclick="selectFormat('Integration')" id="opt-Integration" class="cursor-pointer border border-brand-border hover:border-slate-600 rounded-lg p-5 transition-all">
-
                                 <h4 class="font-bold text-white mb-2">Integration</h4>
-
                                 <p class="text-xs text-slate-400 leading-relaxed">60-90s shoutout inside regular YouTube content.</p>
-
                             </div>
-
                             <!-- Option C -->
-
                             <div onclick="selectFormat('Dedicated')" id="opt-Dedicated" class="cursor-pointer border border-brand-border hover:border-slate-600 rounded-lg p-5 transition-all">
-
                                 <h4 class="font-bold text-white mb-2">Dedicated</h4>
-
                                 <p class="text-xs text-slate-400 leading-relaxed">Full 8-10 min videos entirely about your product.</p>
-
                             </div>
-
                         </div>
-
                     </div>
 
-
-
-                    <!-- Slider Section -->
-
+                    <!-- Slider Section (Updated 500k to 2M) -->
                     <div>
-
                         <div class="flex items-center justify-between mb-8">
-
                             <div class="flex items-center gap-3">
-
                                 <span class="w-6 h-6 rounded bg-brand-dark border border-brand-border flex items-center justify-center text-xs font-bold text-brand-cyan">2</span>
-
                                 <h3 class="text-lg font-bold text-white">Estimated Total Campaign Views</h3>
-
                             </div>
-
                             <div class="border border-brand-cyan/50 bg-brand-cyan/10 text-brand-cyan font-mono font-bold px-4 py-1.5 rounded box-glow">
-
-                                <span id="display-views-badge">520,000</span>
-
+                                <span id="display-views-badge">500,000</span>
                             </div>
-
                         </div>
-
-                       
-
+                        
                         <div class="relative pt-2 pb-6">
-
-                            <input type="range" id="view-slider" min="50000" max="2000000" step="10000" value="520000" oninput="updateCalculator()">
-
+                            <input type="range" id="view-slider" min="500000" max="2000000" step="50000" value="500000" oninput="updateCalculator()">
                             <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-4 font-bold uppercase tracking-wider">
-
-                                <span>50k</span>
-
+                                <span>500k</span>
                                 <span>Target Aggregated Scale</span>
-
                                 <span>2M</span>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
 
                 <!-- Right Panel: Output Sidebar -->
-
                 <div class="lg:col-span-4 bg-brand-dark border border-brand-border rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden">
-
                     <div class="absolute top-0 right-0 p-8 flex gap-1">
-
                         <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
-
                         <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan box-glow"></span>
-
                     </div>
-
-                   
-
+                    
                     <div>
-
                         <h3 class="text-xs font-mono tracking-widest text-slate-400 uppercase mb-8">Est. Proposal</h3>
-
-                       
-
+                        
                         <div class="space-y-6">
-
                             <div class="flex justify-between items-center border-b border-brand-border pb-4">
-
                                 <span class="text-sm text-slate-400 font-mono">Format</span>
-
                                 <span class="text-sm text-white font-bold" id="out-format">Short-Form</span>
-
                             </div>
-
-                           
-
+                            
                             <div class="flex justify-between items-center border-b border-brand-border pb-4">
-
                                 <span class="text-sm text-slate-400 font-mono">Target Views</span>
-
-                                <span class="text-sm text-white font-bold" id="out-views">520,000</span>
-
+                                <span class="text-sm text-white font-bold" id="out-views">500,000</span>
                             </div>
-
-                           
-
+                            
                             <div class="flex justify-between items-center border-b border-brand-border pb-4">
-
                                 <span class="text-sm text-slate-400 font-mono">Add-on Fees</span>
-
                                 <span class="text-sm text-white font-bold" id="out-addons">$150</span>
-
                             </div>
-
-
 
                             <div class="flex justify-between items-center pt-2">
-
                                 <span class="text-sm text-slate-400 font-mono">Fulfilled By:</span>
-
                                 <span class="text-sm text-brand-cyan font-bold font-mono">Curated Micro-Creator Roster</span>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <section id="contact" class="py-24 px-6 max-w-3xl mx-auto flex flex-col items-center">
-
         <h2 class="text-4xl font-extrabold text-white mb-4 text-center">Launch Your Campaign</h2>
-
         <p class="text-slate-400 text-center mb-12 max-w-lg">Submit your details and locked quote. Our account team will prepare your roster and be in touch within 12 hours.</p>
 
-
-
-        <form class="w-full bg-brand-card border border-brand-cyan/20 rounded-2xl p-8 md:p-10 shadow-[0_0_40px_rgba(0,212,255,0.05)]">
+        <!-- Replace YOUR_EMAIL@DOMAIN.COM below with your actual email address -->
+        <form action="https://formsubmit.co/YOUR_EMAIL@DOMAIN.COM" method="POST" class="w-full bg-[#050B14] border border-[#00D4FF]/40 rounded-2xl p-8 md:p-10 form-glow">
+            
+            <!-- Hidden inputs to automatically email you the client's campaign quote data -->
+            <input type="hidden" name="Selected Format" id="hidden-format" value="Short-Form">
+            <input type="hidden" name="Target Views" id="hidden-views" value="500,000">
+            <input type="hidden" name="Estimated Addons" id="hidden-addons" value="$150">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-
                 <div>
-
                     <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">First Name</label>
-
-                    <input type="text" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
-
+                    <input type="text" name="First Name" class="w-full bg-[#03070E] border border-white/5 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
                 </div>
-
                 <div>
-
                     <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">Company Name</label>
-
-                    <input type="text" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
-
+                    <input type="text" name="Company Name" class="w-full bg-[#03070E] border border-white/5 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
                 </div>
-
             </div>
-
-           
-
+            
             <div class="mb-6">
-
                 <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">Work Email</label>
-
-                <input type="email" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
-
+                <input type="email" name="Work Email" class="w-full bg-[#03070E] border border-white/5 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" required>
             </div>
-
-           
-
+            
             <div class="mb-8">
-
                 <label class="block text-[11px] font-mono tracking-widest text-slate-400 uppercase mb-2">Campaign Notes & Attached Quote</label>
-
-                <textarea rows="4" class="w-full bg-brand-dark border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm placeholder:text-slate-600" placeholder="Tell us about your product or attach quote data ..."></textarea>
-
+                <textarea name="Notes" rows="4" class="w-full bg-[#03070E] border border-white/5 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm placeholder:text-slate-600" placeholder="Tell us about your product or attach quote data ..."></textarea>
             </div>
-
-           
-
-            <button type="submit" class="w-full bg-[#0099FF] hover:bg-brand-cyan text-white font-bold py-4 rounded transition-all box-glow">
-
+            
+            <button type="submit" class="w-full bg-[#0099FF] hover:bg-brand-cyan text-white font-bold py-4 rounded transition-all box-glow cursor-pointer">
                 Initialize Deployment
-
             </button>
-
         </form>
-
     </section>
 
-
-
     <script>
-
-        // State variables
-
         let currentFormat = 'Short-Form';
-
         const slider = document.getElementById('view-slider');
 
-
-
-        // Helper to format numbers with commas
-
         function formatNumber(num) {
-
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
         }
-
-
-
-        // Handle clicking the format boxes
 
         function selectFormat(format) {
-
             currentFormat = format;
-
-           
-
-            // Reset all boxes to default style
-
+            
             const options = ['Short-Form', 'Integration', 'Dedicated'];
-
             options.forEach(opt => {
-
                 const el = document.getElementById('opt-' + opt);
-
                 el.className = 'cursor-pointer border border-brand-border hover:border-slate-600 rounded-lg p-5 transition-all';
-
             });
-
-           
-
-            // Highlight selected box
-
+            
             const selectedEl = document.getElementById('opt-' + format);
-
             selectedEl.className = 'cursor-pointer border border-brand-cyan bg-brand-cyan/5 rounded-lg p-5 transition-all';
-
-           
-
-            // Trigger UI update
-
+            
             updateCalculator();
-
         }
-
-
-
-        // Handle slider movement and UI updates
 
         function updateCalculator() {
-
             const views = parseInt(slider.value);
-
             const formattedViews = formatNumber(views);
-
-           
-
-            // Update slider filled track appearance
-
+            
             const percentage = ((views - slider.min) / (slider.max - slider.min)) * 100;
-
             slider.style.background = `linear-gradient(to right, #00D4FF ${percentage}%, #1E293B ${percentage}%)`;
-
-           
-
-            // Update UI elements
-
+            
             document.getElementById('display-views-badge').innerText = formattedViews;
-
             document.getElementById('out-views').innerText = formattedViews;
-
             document.getElementById('out-format').innerText = currentFormat;
-
-           
-
-            // Simulated add-on logic (changes slightly based on format just to make it interactive)
-
+            
             let addons = 150;
-
             if (currentFormat === 'Integration') addons = 250;
-
             if (currentFormat === 'Dedicated') addons = 500;
-
             document.getElementById('out-addons').innerText = '$' + addons;
 
+            // Sync hidden inputs so form submit sends quote details to your email
+            document.getElementById('hidden-format').value = currentFormat;
+            document.getElementById('hidden-views').value = formattedViews;
+            document.getElementById('hidden-addons').value = '$' + addons;
         }
 
-
-
-        // Initialize calculator on page load
-
+        // Initialize on page load
         updateCalculator();
-
     </script>
-
 </body>
-
-</html> 
+</html>
