@@ -186,7 +186,7 @@
                         </div>
                     </div>
 
-                    <!-- Slider Section (Updated 500k to 2M) -->
+                    <!-- Slider Section (Updated 50k to 500k) -->
                     <div>
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center gap-3">
@@ -194,16 +194,17 @@
                                 <h3 class="text-lg font-bold text-white">Estimated Total Campaign Views</h3>
                             </div>
                             <div class="border border-brand-cyan/50 bg-brand-cyan/10 text-brand-cyan font-mono font-bold px-4 py-1.5 rounded box-glow">
-                                <span id="display-views-badge">500,000</span>
+                                <span id="display-views-badge">150,000</span>
                             </div>
                         </div>
                         
                         <div class="relative pt-2 pb-6">
-                            <input type="range" id="view-slider" min="500000" max="2000000" step="50000" value="500000" oninput="updateCalculator()">
+                            <!-- FIXED: Min 50k, Max 500k -->
+                            <input type="range" id="view-slider" min="50000" max="500000" step="10000" value="150000" oninput="updateCalculator()">
                             <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-4 font-bold uppercase tracking-wider">
-                                <span>500k</span>
+                                <span>50k</span>
                                 <span>Target Aggregated Scale</span>
-                                <span>2M</span>
+                                <span>500k</span>
                             </div>
                         </div>
                     </div>
@@ -227,7 +228,7 @@
                             
                             <div class="flex justify-between items-center border-b border-brand-border pb-4">
                                 <span class="text-sm text-slate-400 font-mono">Target Views</span>
-                                <span class="text-sm text-white font-bold" id="out-views">500,000</span>
+                                <span class="text-sm text-white font-bold" id="out-views">150,000</span>
                             </div>
                             
                             <div class="flex justify-between items-center border-b border-brand-border pb-4">
@@ -255,8 +256,14 @@
             
             <!-- Hidden inputs to automatically email you the client's campaign quote data -->
             <input type="hidden" name="Selected Format" id="hidden-format" value="Short-Form">
-            <input type="hidden" name="Target Views" id="hidden-views" value="500,000">
+            <input type="hidden" name="Target Views" id="hidden-views" value="150,000">
             <input type="hidden" name="Estimated Addons" id="hidden-addons" value="$150">
+
+            <!-- Redirect page after successful submission (Optional) -->
+            <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html"> -->
+
+            <!-- Disable captcha (Optional) -->
+            <input type="hidden" name="_captcha" value="false">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
